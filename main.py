@@ -29,11 +29,9 @@ def download_github_folder(repo_url, target_folder, github_token=None):
     # Parse the URL
     url_parts = parse_github_url(repo_url)
     
-    # FIX: Correct API Base URL (api.github.com) and proper slashes
     api_url = f"https://api.github.com/repos/{url_parts['owner']}/{url_parts['repo']}/contents/{url_parts['path']}"
     
     # Setup headers (including branch/ref and optional authentication token)
-    # Added a standard User-Agent required by the GitHub API
     headers = {
         "Accept": "application/vnd.github.v3+json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) GitHub Folder Downloader"
@@ -80,9 +78,7 @@ def download_github_folder(repo_url, target_folder, github_token=None):
                 
     print(f"\nSuccess! Downloaded {downloaded_count} files to '{target_folder}'.")
 
-# --- Run Configuration ---
 if __name__ == "__main__":
-    # Your target URL containing the winutils binaries
     GITHUB_FOLDER_URL = "https://github.com/kontext-tech/winutils/tree/master/hadoop-3.4.0-win10-x64/bin"
     
     # The destination directory where files will be outputted
